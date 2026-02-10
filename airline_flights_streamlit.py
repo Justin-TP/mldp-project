@@ -3,6 +3,14 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from datetime import date
+import requests
+
+# Google Drive direct download link
+url = "https://drive.google.com/uc?export=download&id=1eRX0NKXFR4TjRMIIFmIhlv8y89izzgnK"
+
+r = requests.get(url)
+with open("final_rf_model.pkl", "wb") as f:
+    f.write(r.content)
 
 # Load trained Random Forest model
 model = joblib.load("final_rf_model.pkl")
