@@ -4,16 +4,15 @@ import numpy as np
 import pandas as pd
 from datetime import date
 import requests
-# import gdown
+import gdown
 
 
 @st.cache_resource
 def load_model():
-    url = "https://drive.google.com/uc?export=download&id=18FBUwiK46BcIIFy6ZbzsNayhC6ULjcWA"
-    r = requests.get(url)
-    with open("final_rf_model.pkl", "wb") as f:
-        f.write(r.content)
-    return joblib.load("final_rf_model.pkl")
+    url = "https://drive.google.com/uc?id=18FBUwiK46BcIIFy6ZbzsNayhC6ULjcWA"
+    output = "final_rf_model.pkl"
+    gdown.download(url, output, quiet=False)
+    return joblib.load(output)
 
 model = load_model()
 
