@@ -5,27 +5,16 @@ import pandas as pd
 from datetime import date
 import requests
 import gdown
-import os
 
-# --- Load model ---
-file_id = "1BlMv64th03CnAw_0mrSH2AuE3PBvFReF"   # replace with your file ID
+
+# Google Drive direct download link
+url = f"https://drive.google.com/uc?export=download&id=1BlMv64th03CnAw_0mrSH2AuE3PBvFReF"
+
 output = "final_rf_model.pkl"
-
-# Only download if not already present
-if not os.path.exists(output):
-    try:
-        gdown.download(id=file_id, output=output, quiet=False)
-    except Exception as e:
-        st.error(f"❌ Failed to download model: {e}")
-        st.stop()
+gdown.download(url, output, quiet=False)
 
 # Load the model
-try:
-    model = joblib.load(output)
-except Exception as e:
-    st.error(f"❌ Failed to load model: {e}")
-    st.stop()
-
+model = joblib.load(output)
 
 ## App title
 st.title("Airline Ticket Price Prediction")
