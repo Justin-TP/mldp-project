@@ -4,17 +4,16 @@ import numpy as np
 import pandas as pd
 from datetime import date
 import requests
-import gdown
+# import gdown
 
 
-# Google Drive direct download link
-url = f"https://drive.google.com/uc?export=download&id=18FBUwiK46BcIIFy6ZbzsNayhC6ULjcWA"
+url = "https://drive.google.com/uc?export=download&id=18FBUwiK46BcIIFy6ZbzsNayhC6ULjcWA"
+r = requests.get(url)
+with open("final_rf_model.pkl", "wb") as f:
+    f.write(r.content)
 
-output = "final_rf_model.pkl"
-gdown.download(url, output, quiet=False)
+model = joblib.load("final_rf_model.pkl")
 
-# Load the model
-model = joblib.load(output)
 
 ## App title
 st.title("Airline Ticket Price Prediction")
