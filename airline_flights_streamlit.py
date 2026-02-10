@@ -8,7 +8,7 @@ import gdown
 
 
 # Google Drive direct download link
-url = f"https://drive.google.com/uc?export=download&id=1A0-UtquOp5NczUNo14zrJZ4UU6N4DqHK"
+url = f"https://drive.google.com/uc?export=download&id=18FBUwiK46BcIIFy6ZbzsNayhC6ULjcWA"
 
 output = "final_rf_model.pkl"
 gdown.download(url, output, quiet=False)
