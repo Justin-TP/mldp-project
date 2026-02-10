@@ -93,7 +93,7 @@ if st.button("Predict Ticket Price"):
         # Modal popup
         @st.dialog("Prediction Result")
         def show_modal():
-            st.markdown(f"### Predicted Ticket Price: ₹{y_pred:,.2f}")
+            st.markdown(f"### Predicted Ticket Price: {y_pred:,.2f} Rupees")
             st.write("**Inputs used:**")
             st.json(input_data)
 
