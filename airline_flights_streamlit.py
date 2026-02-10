@@ -7,12 +7,15 @@ import requests
 # import gdown
 
 
-url = "https://drive.google.com/uc?export=download&id=18FBUwiK46BcIIFy6ZbzsNayhC6ULjcWA"
-r = requests.get(url)
-with open("final_rf_model.pkl", "wb") as f:
-    f.write(r.content)
+@st.cache_resource
+def load_model():
+    url = "https://drive.google.com/uc?export=download&id=18FBUwiK46BcIIFy6ZbzsNayhC6ULjcWA"
+    r = requests.get(url)
+    with open("final_rf_model.pkl", "wb") as f:
+        f.write(r.content)
+    return joblib.load("final_rf_model.pkl")
 
-model = joblib.load("final_rf_model.pkl")
+model = load_model()
 
 
 ## App title
