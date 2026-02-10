@@ -4,16 +4,17 @@ import numpy as np
 import pandas as pd
 from datetime import date
 import requests
+import gdown
+
 
 # Google Drive direct download link
-url = "https://drive.google.com/uc?export=download&id=1eRX0NKXFR4TjRMIIFmIhlv8y89izzgnK"
+url = f"https://drive.google.com/uc?export=download&id=1eRX0NKXFR4TjRMIIFmIhlv8y89izzgnK"
 
-r = requests.get(url)
-with open("final_rf_model.pkl", "wb") as f:
-    f.write(r.content)
+output = "final_rf_model.pkl"
+gdown.download(url, output, quiet=False)
 
-# Load trained Random Forest model
-model = joblib.load("final_rf_model.pkl")
+# Load the model
+model = joblib.load(output)
 
 ## App title
 st.title("Airline Ticket Price Prediction")
